@@ -152,17 +152,30 @@ const PaymentSection = ({ balance, roommateId }: PaymentSectionProps) => {
                   onChange={(e) => handleFileUpload(e, true)}
                 />
                 {yourQrCode && (
-                  <Button 
-                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg"
-                    onClick={() => {
-                      toast({
-                        title: "QR Code Ready!",
-                        description: "Share this QR code to receive payments easily.",
-                      });
-                    }}
-                  >
-                    Ready to Receive Payment
-                  </Button>
+                  <>
+                    <Button 
+                      className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg"
+                      onClick={() => {
+                        toast({
+                          title: "QR Code Ready!",
+                          description: "Share this QR code to receive payments easily.",
+                        });
+                      }}
+                    >
+                      Ready to Receive Payment
+                    </Button>
+                    <Button 
+                      className="w-full bg-green-600 hover:bg-green-700 text-white shadow-lg"
+                      onClick={() => {
+                        toast({
+                          title: "Redirecting to Payment App 🔗",
+                          description: "Opening your payment app for quick access.",
+                        });
+                      }}
+                    >
+                      Open Payment App
+                    </Button>
+                  </>
                 )}
               </div>
             </div>
@@ -215,18 +228,31 @@ const PaymentSection = ({ balance, roommateId }: PaymentSectionProps) => {
                   onChange={(e) => handleFileUpload(e, false)}
                 />
                 {roommateQrCode && (
-                  <Button 
-                    variant="secondary"
-                    className="w-full bg-gradient-to-r from-accent to-accent/80 hover:from-accent/90 hover:to-accent/70 shadow-lg"
-                    onClick={() => {
-                      toast({
-                        title: "Opening Payment App...",
-                        description: `Redirecting to ${roommateId}'s payment method.`,
-                      });
-                    }}
-                  >
-                    Pay {roommateId}
-                  </Button>
+                  <>
+                    <Button 
+                      variant="secondary"
+                      className="w-full bg-gradient-to-r from-accent to-accent/80 hover:from-accent/90 hover:to-accent/70 shadow-lg"
+                      onClick={() => {
+                        toast({
+                          title: "Opening Payment App...",
+                          description: `Redirecting to ${roommateId}'s payment method.`,
+                        });
+                      }}
+                    >
+                      Pay {roommateId}
+                    </Button>
+                    <Button 
+                      className="w-full bg-green-600 hover:bg-green-700 text-white shadow-lg"
+                      onClick={() => {
+                        toast({
+                          title: "Redirecting to Payment App 🔗",
+                          description: `Opening ${roommateId}'s payment app for direct payment.`,
+                        });
+                      }}
+                    >
+                      Quick Pay via App
+                    </Button>
+                  </>
                 )}
               </div>
             </div>
