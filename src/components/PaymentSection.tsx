@@ -152,30 +152,17 @@ const PaymentSection = ({ balance, roommateId }: PaymentSectionProps) => {
                   onChange={(e) => handleFileUpload(e, true)}
                 />
                 {yourQrCode && (
-                  <>
-                    <Button 
-                      className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg"
-                      onClick={() => {
-                        toast({
-                          title: "QR Code Ready!",
-                          description: "Share this QR code to receive payments easily.",
-                        });
-                      }}
-                    >
-                      Ready to Receive Payment
-                    </Button>
-                    <Button 
-                      className="w-full bg-green-600 hover:bg-green-700 text-white shadow-lg"
-                      onClick={() => {
-                        toast({
-                          title: "Redirecting to Payment App 🔗",
-                          description: "Opening your payment app for quick access.",
-                        });
-                      }}
-                    >
-                      Open Payment App
-                    </Button>
-                  </>
+                  <Button 
+                    className="w-full bg-green-600 hover:bg-green-700 text-white shadow-lg"
+                    onClick={() => {
+                      toast({
+                        title: "Redirecting to Payment App 🔗",
+                        description: "Opening your payment app for quick access.",
+                      });
+                    }}
+                  >
+                    Open Payment App
+                  </Button>
                 )}
               </div>
             </div>
