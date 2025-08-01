@@ -28,8 +28,8 @@ const Header = () => {
           </nav>
 
           {/* User Icon */}
-          <div className="w-10 h-10 rounded-full border border-border flex items-center justify-center">
-            <User className="w-5 h-5 text-muted-foreground" />
+          <div className="w-10 h-10 rounded-full bg-accent/20 border-2 border-accent/30 flex items-center justify-center hover:bg-accent/30 transition-colors cursor-pointer">
+            <User className="w-5 h-5 text-accent-foreground" />
           </div>
         </div>
       </div>

@@ -63,7 +63,7 @@ const PaymentSection = ({ balance, roommateId }: PaymentSectionProps) => {
   return (
     <div className="space-y-6">
       {/* Balance Overview */}
-      <Card>
+      <Card className="shadow-xl border-2 border-accent/20">
         <CardHeader>
           <CardTitle>Payment Overview</CardTitle>
         </CardHeader>
@@ -81,8 +81,21 @@ const PaymentSection = ({ balance, roommateId }: PaymentSectionProps) => {
             </p>
             {balanceStatus.action && (
               <Button 
-                className="mt-4"
+                className="mt-4 shadow-lg"
                 variant={balance < 0 ? "default" : "outline"}
+                onClick={() => {
+                  if (balance > 0) {
+                    toast({
+                      title: "Payment Request Sent! 📨",
+                      description: `Request for ₹${balance.toFixed(2)} has been sent to ${roommateId}.`,
+                    });
+                  } else {
+                    toast({
+                      title: "Payment Reminder",
+                      description: `You need to pay ₹${Math.abs(balance).toFixed(2)} to ${roommateId}.`,
+                    });
+                  }
+                }}
               >
                 {balanceStatus.action}
               </Button>
@@ -94,7 +107,7 @@ const PaymentSection = ({ balance, roommateId }: PaymentSectionProps) => {
       {/* QR Code Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Your QR Code */}
-        <Card>
+        <Card className="shadow-lg border border-accent/30 hover:shadow-xl transition-shadow">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <QrCode className="w-5 h-5" />
@@ -122,7 +135,7 @@ const PaymentSection = ({ balance, roommateId }: PaymentSectionProps) => {
                 </div>
               )}
               
-              <div>
+              <div className="space-y-3">
                 <Label htmlFor="your-qr" className="cursor-pointer">
                   <Button variant="outline" className="w-full" asChild>
                     <span>
@@ -138,13 +151,26 @@ const PaymentSection = ({ balance, roommateId }: PaymentSectionProps) => {
                   className="hidden"
                   onChange={(e) => handleFileUpload(e, true)}
                 />
+                {yourQrCode && (
+                  <Button 
+                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg"
+                    onClick={() => {
+                      toast({
+                        title: "QR Code Ready!",
+                        description: "Share this QR code to receive payments easily.",
+                      });
+                    }}
+                  >
+                    Ready to Receive Payment
+                  </Button>
+                )}
               </div>
             </div>
           </CardContent>
         </Card>
 
         {/* Roommate's QR Code */}
-        <Card>
+        <Card className="shadow-lg border border-accent/30 hover:shadow-xl transition-shadow">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <QrCode className="w-5 h-5" />
@@ -172,7 +198,7 @@ const PaymentSection = ({ balance, roommateId }: PaymentSectionProps) => {
                 </div>
               )}
               
-              <div>
+              <div className="space-y-3">
                 <Label htmlFor="roommate-qr" className="cursor-pointer">
                   <Button variant="outline" className="w-full" asChild>
                     <span>
@@ -188,6 +214,20 @@ const PaymentSection = ({ balance, roommateId }: PaymentSectionProps) => {
                   className="hidden"
                   onChange={(e) => handleFileUpload(e, false)}
                 />
+                {roommateQrCode && (
+                  <Button 
+                    variant="secondary"
+                    className="w-full bg-gradient-to-r from-accent to-accent/80 hover:from-accent/90 hover:to-accent/70 shadow-lg"
+                    onClick={() => {
+                      toast({
+                        title: "Opening Payment App...",
+                        description: `Redirecting to ${roommateId}'s payment method.`,
+                      });
+                    }}
+                  >
+                    Pay {roommateId}
+                  </Button>
+                )}
               </div>
             </div>
           </CardContent>
